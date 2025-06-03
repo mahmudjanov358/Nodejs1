@@ -21,6 +21,7 @@ const postUser = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Bu user bilan ro'yxatdan o'tgan foydalanuvchi mavjud!",
+        innerData: null,
       });
     } else {
       const newUser = new User({
@@ -38,6 +39,7 @@ const postUser = async (req, res) => {
       return res.status(201).json({
         success: true,
         message: "User muvaffaqiyatli qo'shildi!",
+        innerData: newUser,
       });
     }
   } catch (error) {
@@ -71,11 +73,14 @@ const getUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
+
     const user = await User.findById(userId);
+
     if (!user) {
       res.status(404).json({
         success: false,
         message: "User topilmadi",
+        innerData: null,
       });
     } else {
       res.status(200).json({
@@ -94,6 +99,57 @@ const getUserById = async (req, res) => {
   }
 };
 
+// ----------updateUser
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      username,
+      password,
+      firstName,
+      lastName,
+      birthday,
+      jinsi,
+      address,
+      phone,
+    } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        username,
+        password,
+        firstName,
+        lastName,
+        birthday,
+        jinsi,
+        address,
+        phone,
+      },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User topilmadi",
+        innerData: null,
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "User muvaffaqiyatli yangilandi",
+      });
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server xatosi: User yangilash jarayonida xato yuz berdi!",
+    });
+  }
+};
+
 // ----------deleteUser
 const deleteUser = async (req, res) => {
   try {
@@ -103,6 +159,7 @@ const deleteUser = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: "User topilmadi",
+        innerData: null,
       });
     } else {
       return res.status(200).json({
@@ -125,5 +182,6 @@ module.exports = {
   postUser,
   getUser,
   getUserById,
+  updateUser,
   deleteUser,
 };
