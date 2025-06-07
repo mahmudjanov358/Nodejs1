@@ -2,7 +2,7 @@
 const { Car } = require("../models/carSchema");
 
 // ----------postCar
-const postCar = async (req, res) => {
+exports.postCar = async (req, res) => {
   try {
     const {
       title,
@@ -58,7 +58,7 @@ const postCar = async (req, res) => {
 };
 
 // ----------getCar
-const getCar = async (req, res) => {
+exports.getCar = async (req, res) => {
   try {
     const car = await Car.find();
     return res.status(200).json({
@@ -76,7 +76,7 @@ const getCar = async (req, res) => {
 };
 
 // ----------getCarById
-const getCarById = async (req, res) => {
+exports.getCarById = async (req, res) => {
   try {
     const carId = req.params.id;
     const car = await Car.findById(carId);
@@ -104,7 +104,7 @@ const getCarById = async (req, res) => {
 };
 
 // ----------updateCar
-const updateCar = async (req, res) => {
+exports.updateCar = async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -160,7 +160,7 @@ const updateCar = async (req, res) => {
 };
 
 // ----------deleteCar
-const deleteCar = async (req, res) => {
+exports.deleteCar = async (req, res) => {
   try {
     const carId = req.params.id;
     const car = await Car.findByIdAndDelete(carId);
@@ -184,13 +184,4 @@ const deleteCar = async (req, res) => {
       message: "Internal Server Error!",
     });
   }
-};
-
-// ----------Export
-module.exports = {
-  postCar,
-  getCar,
-  getCarById,
-  updateCar,
-  deleteCar,
 };

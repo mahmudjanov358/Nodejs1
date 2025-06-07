@@ -2,7 +2,7 @@
 const { User } = require("../models/userSchema");
 
 // ----------postUser
-const postUser = async (req, res) => {
+exports.postUser = async (req, res) => {
   try {
     const {
       username,
@@ -52,7 +52,7 @@ const postUser = async (req, res) => {
 };
 
 // ----------getUser
-const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
     const user = await User.find({});
     return res.json({
@@ -70,7 +70,7 @@ const getUser = async (req, res) => {
 };
 
 // ---------getUserById
-const getUserById = async (req, res) => {
+exports.getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findById(userId);
@@ -99,7 +99,7 @@ const getUserById = async (req, res) => {
 };
 
 // ----------updateUser
-const updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -150,7 +150,7 @@ const updateUser = async (req, res) => {
 };
 
 // ----------deleteUser
-const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findByIdAndDelete(userId);
@@ -175,13 +175,4 @@ const deleteUser = async (req, res) => {
       message: "Server xatosi: User o'chirish jarayonida xato yuz berdi!",
     });
   }
-};
-
-// --------Exports
-module.exports = {
-  postUser,
-  getUser,
-  getUserById,
-  updateUser,
-  deleteUser,
 };
