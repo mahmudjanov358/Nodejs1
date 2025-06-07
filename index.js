@@ -24,6 +24,9 @@ connectToDB();
 const { user } = require("./routers/userRouter");
 app.use("/user", user);
 
+const { car } = require("./routers/carRouter");
+app.use("/car", car);
+
 // ----------Server
 const PORT = process.env.PORT || 1000;
 app.listen(PORT, () => {

@@ -55,14 +55,14 @@ const postUser = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const user = await User.find({});
-    res.json({
+    return res.json({
       success: true,
       message: "Users ro'yxati",
       innerData: user,
     });
   } catch (error) {
     console.log("Error fetching user:", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Server xatosi: Users ro'yxatini olishda xato yuz berdi!",
     });
@@ -73,17 +73,16 @@ const getUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
-
     const user = await User.findById(userId);
 
     if (!user) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         message: "User topilmadi",
         innerData: null,
       });
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "User topildi",
         innerData: user,
@@ -91,7 +90,7 @@ const getUserById = async (req, res) => {
     }
   } catch (error) {
     console.error("Error fetching user by ID:", error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message:
         "Server xatosi: User ID bo'yicha ma'lumot olishda xato yuz berdi!",
@@ -155,6 +154,7 @@ const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findByIdAndDelete(userId);
+
     if (!user) {
       return res.status(404).json({
         success: false,
