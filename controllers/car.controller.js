@@ -132,7 +132,6 @@ const updateCar = async (req, res) => {
         charging,
         weight,
         gasoline,
-        yearMachine,
         price,
       },
       { new: true }
