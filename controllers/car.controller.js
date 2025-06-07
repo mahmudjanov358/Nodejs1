@@ -1,4 +1,4 @@
-// ----------Car
+// ----------Car Controller-----------
 const { Car } = require("../models/carSchema");
 
 // ----------postCar
@@ -23,7 +23,7 @@ exports.postCar = async (req, res) => {
     if (existingCar) {
       return res.status(400).json({
         success: false,
-        message: "Bu car ro'yxatingizda mavjud!",
+        message: "Car with this title already exists",
         car: null,
       });
     } else {
@@ -44,7 +44,7 @@ exports.postCar = async (req, res) => {
 
       return res.status(201).json({
         success: true,
-        message: "Car muvaffaqiyatli ro'yxatga kiritildi!",
+        message: "Car created successfully!",
         car: newCar,
       });
     }
@@ -141,7 +141,6 @@ exports.updateCar = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: "Car not found",
-        car: null,
       });
     } else {
       return res.status(200).json({

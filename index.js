@@ -27,6 +27,9 @@ app.use("/user", user);
 const { car } = require("./routers/carRouter");
 app.use("/car", car);
 
+const { product } = require("./routers/productRouter");
+app.use("/product", product);
+
 // ----------Server
 const PORT = process.env.PORT || 1000;
 app.listen(PORT, () => {

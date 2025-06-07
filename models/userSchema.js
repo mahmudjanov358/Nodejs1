@@ -1,5 +1,7 @@
+// ----------Importing Mongoose----------
 const { Schema, model } = require("mongoose");
 
+// ----------Defining the User Schema----------
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
@@ -11,5 +13,6 @@ const userSchema = new Schema({
   phone: { type: String, default: "" },
 });
 
+// ----------Exporting the User Model----------
 const User = model("User", userSchema);
 module.exports = { User };

@@ -1,5 +1,7 @@
+// ----------Importing Mongoose----------
 const { Schema, model } = require("mongoose");
 
+// ----------Defining the Car Schema----------
 const carSchema = new Schema({
   title: { type: String, required: true, unique: true },
   model: { type: String, required: true },
@@ -14,5 +16,6 @@ const carSchema = new Schema({
   price: { type: Number, required: true },
 });
 
+// ----------Exporting the Car Model----------
 const Car = model("Car", carSchema);
 module.exports = { Car };

@@ -1,4 +1,4 @@
-// ----------User
+// ----------User Controller----------
 const { User } = require("../models/userSchema");
 
 // ----------postUser
