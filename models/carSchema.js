@@ -1,4 +1,4 @@
-// ----------Importing Mongoose----------
+// ----------Importing Mongoose(Schema, Model)----------
 const { Schema, model } = require("mongoose");
 
 // ----------Defining the Car Schema----------

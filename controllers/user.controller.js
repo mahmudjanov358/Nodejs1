@@ -1,7 +1,7 @@
 // ----------User Controller----------
 const { User } = require("../models/userSchema");
 
-// ----------postUser
+// ----------postUser----------
 exports.postUser = async (req, res) => {
   try {
     const {
@@ -51,7 +51,7 @@ exports.postUser = async (req, res) => {
   }
 };
 
-// ----------getUser
+// ----------getUser----------
 exports.getUser = async (req, res) => {
   try {
     const user = await User.find({});
@@ -69,7 +69,7 @@ exports.getUser = async (req, res) => {
   }
 };
 
-// ---------getUserById
+// ---------getUserById----------
 exports.getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -98,7 +98,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// ----------updateUser
+// ----------updateUser----------
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -149,7 +149,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// ----------deleteUser
+// ----------deleteUser----------
 exports.deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;

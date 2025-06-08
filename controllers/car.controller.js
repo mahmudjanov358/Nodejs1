@@ -1,7 +1,7 @@
 // ----------Car Controller-----------
 const { Car } = require("../models/carSchema");
 
-// ----------postCar
+// ----------postCar----------
 exports.postCar = async (req, res) => {
   try {
     const {
@@ -57,7 +57,7 @@ exports.postCar = async (req, res) => {
   }
 };
 
-// ----------getCar
+// ----------getCar----------
 exports.getCar = async (req, res) => {
   try {
     const car = await Car.find();
@@ -75,7 +75,7 @@ exports.getCar = async (req, res) => {
   }
 };
 
-// ----------getCarById
+// ----------getCarById----------
 exports.getCarById = async (req, res) => {
   try {
     const carId = req.params.id;
@@ -103,7 +103,7 @@ exports.getCarById = async (req, res) => {
   }
 };
 
-// ----------updateCar
+// ----------updateCar----------
 exports.updateCar = async (req, res) => {
   try {
     const { id } = req.params;
@@ -158,7 +158,7 @@ exports.updateCar = async (req, res) => {
   }
 };
 
-// ----------deleteCar
+// ----------deleteCar----------
 exports.deleteCar = async (req, res) => {
   try {
     const carId = req.params.id;

@@ -1,7 +1,7 @@
 // ----------Product Controller----------
 const { Product } = require("../models/productSchema");
 
-// ----------postProduct
+// ----------postProduct----------
 exports.postProduct = async (req, res) => {
   try {
     const {
@@ -50,7 +50,7 @@ exports.postProduct = async (req, res) => {
   }
 };
 
-// ----------getProducts
+// ----------getProducts----------
 exports.getProduct = async (req, res) => {
   try {
     const product = await Product.find();
@@ -68,7 +68,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-// ----------getProductById
+// ----------getProductById----------
 exports.getProductById = async (req, res) => {
   try {
     const productId = req.params.id;
@@ -96,7 +96,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// ----------updateProduct
+// ----------updateProduct----------
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -147,7 +147,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// ----------deleteProduct
+// ----------deleteProduct----------
 exports.deleteProduct = async (req, res) => {
   try {
     const productId = req.params.id;

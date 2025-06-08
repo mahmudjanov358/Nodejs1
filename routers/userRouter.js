@@ -1,5 +1,5 @@
-const { Router } = require("express"); // ----------Router
-const user = Router(); // ----------User
+const { Router } = require("express"); // ----------Express Router----------
+const user = Router(); // ----------User Router Instance----------
 
 const {
   postUser,
@@ -7,7 +7,7 @@ const {
   getUserById,
   updateUser,
   deleteUser,
-} = require("../controllers/user.controller"); // ----------Controllers
+} = require("../controllers/user.controller"); // ----------User Controller Functions----------
 
 // ----------Paths----------
 user.post("/postUser", postUser);
@@ -16,5 +16,5 @@ user.get("/getUserById/:id", getUserById);
 user.put("/updateUser/:id", updateUser);
 user.delete("/deleteUser/:id", deleteUser);
 
-// ----------Exports----------
+// ----------Exporting User Router----------
 module.exports = { user };

@@ -1,15 +1,15 @@
-const express = require("express");
-const { connect } = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+const express = require("express"); // ----------Express----------
+const { connect } = require("mongoose"); // ----------Mongoose----------
+const cors = require("cors"); // ----------CORS----------
+require("dotenv").config(); // ----------Environment Variables----------
 
-const app = express();
+const app = express(); // ----------App Instance----------
 
-// ----------Middleware
+// ----------Middleware----------
 app.use(express.json());
 app.use(cors());
 
-// ----------Database connection
+// ----------Database connecToDB----------
 async function connectToDB() {
   try {
     await connect(process.env.MONGO_URL);
@@ -20,17 +20,15 @@ async function connectToDB() {
 }
 connectToDB();
 
-// ----------Routers
-const { user } = require("./routers/userRouter");
+// ----------Routers----------
+const { user } = require("./routers/userRouter"); // ----------User Router
 app.use("/user", user);
-
-const { car } = require("./routers/carRouter");
+const { car } = require("./routers/carRouter"); // ----------Car Router
 app.use("/car", car);
-
-const { product } = require("./routers/productRouter");
+const { product } = require("./routers/productRouter"); // ----------Product Router
 app.use("/product", product);
 
-// ----------Server
+// ----------Server----------
 const PORT = process.env.PORT || 1000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

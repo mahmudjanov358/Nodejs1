@@ -1,5 +1,5 @@
-const { Router } = require("express"); // ----------Router
-const product = Router(); // ----------Product
+const { Router } = require("express"); // ----------Express Router----------
+const product = Router(); // ----------Product Router Instance----------
 
 const {
   postProduct,
@@ -7,7 +7,7 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-} = require("../controllers/product.controller"); // ----------Controllers
+} = require("../controllers/product.controller"); // ----------Product Controller Functions----------
 
 // ----------Paths----------
 product.post("/postProduct", postProduct);
@@ -16,5 +16,5 @@ product.get("/getProductById/:id", getProductById);
 product.put("/updateProduct/:id", updateProduct);
 product.delete("/deleteProduct/:id", deleteProduct);
 
-// ----------Exports----------
+// ----------Exporting Product Router----------
 module.exports = { product };
