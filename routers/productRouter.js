@@ -13,7 +13,7 @@ const {
 product.post("/postProduct", postProduct);
 product.get("/getProduct", getProduct);
 product.get("/getProductById/:id", getProductById);
-product.put("/updateProduct/:id", updateProduct);
+product.patch("/updateProduct/:id", updateProduct);
 product.delete("/deleteProduct/:id", deleteProduct);
 
 // ----------Exporting Product Router----------

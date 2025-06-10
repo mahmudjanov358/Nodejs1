@@ -104,7 +104,6 @@ exports.updateProduct = async (req, res) => {
       title,
       description,
       price,
-      isActive,
       sellerName,
       sellerLastName,
       sellerPhone,
@@ -117,7 +116,6 @@ exports.updateProduct = async (req, res) => {
         title,
         description,
         price,
-        isActive,
         sellerName,
         sellerLastName,
         sellerPhone,
@@ -162,6 +160,7 @@ exports.deleteProduct = async (req, res) => {
       return res.status(200).json({
         success: true,
         message: "Product deleted successfully",
+        product: deletedProduct,
       });
     }
   } catch (error) {

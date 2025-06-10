@@ -13,7 +13,7 @@ const {
 car.post("/postCar", postCar);
 car.get("/getCar", getCar);
 car.get("/getCarById/:id", getCarById);
-car.put("/updateCar/:id", updateCar);
+car.patch("/updateCar/:id", updateCar);
 car.delete("/deleteCar/:id", deleteCar);
 
 // ----------Exporting Car Router----------
