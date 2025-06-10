@@ -41,8 +41,8 @@ exports.postProduct = async (req, res) => {
         product: newProduct,
       });
     }
-  } catch (eror) {
-    console.error("Error — ", eror);
+  } catch (error) {
+    console.error("Error — ", error);
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
