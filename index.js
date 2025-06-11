@@ -21,12 +21,14 @@ async function connectToDB() {
 connectToDB();
 
 // ----------Routers----------
-const { user } = require("./routers/userRouter"); // ----------User Router
+const { user } = require("./routers/userRouter"); // ----------User Router----------
 app.use("/user", user);
-const { car } = require("./routers/carRouter"); // ----------Car Router
+const { car } = require("./routers/carRouter"); // ----------Car Router----------
 app.use("/car", car);
-const { product } = require("./routers/productRouter"); // ----------Product Router
+const { product } = require("./routers/productRouter"); // ----------Product Router----------
 app.use("/product", product);
+const { house } = require("./routers/houseRouter"); // ----------House Router----------
+app.use("/house", house);
 
 // ----------Server----------
 const PORT = process.env.PORT || 1000;
