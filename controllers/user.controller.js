@@ -1,5 +1,7 @@
 // ----------User Controller----------
 const { User } = require("../models/userSchema");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // ----------postUser----------
 exports.postUser = async (req, res) => {
@@ -24,9 +26,10 @@ exports.postUser = async (req, res) => {
         innerData: null,
       });
     } else {
+      const hashPassword = await bcrypt.hash(password, 10);
       const newUser = new User({
         username,
-        password,
+        password: hashPassword,
         firstName,
         lastName,
         birthday,
@@ -173,6 +176,42 @@ exports.deleteUser = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Server xatosi: User o'chirish jarayonida xato yuz berdi!",
+    });
+  }
+};
+
+// ----------loginUser----------
+exports.loginUser = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Username is invalid!",
+      });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(404).json({
+        success: false,
+        message: "Username is password invalid!",
+      });
+    }
+
+    const token = jwt.sign({ username: user.username }, "secret");
+    return res.json({
+      message: "Token",
+      token: token,
+    });
+  } catch (error) {
+    console.error("Error — ", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error!",
     });
   }
 };
