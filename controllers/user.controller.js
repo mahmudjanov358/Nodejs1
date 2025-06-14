@@ -15,6 +15,9 @@ exports.postUser = async (req, res) => {
       jinsi,
       address,
       phone,
+      car_id,
+      product_id,
+      house_id,
     } = req.body;
     const existingUser = await User.findOne({ username });
     console.log(`Existing User: ${existingUser}`);
@@ -36,6 +39,9 @@ exports.postUser = async (req, res) => {
         jinsi,
         address,
         phone,
+        car_id,
+        product_id,
+        house_id,
       });
       await newUser.save();
 
@@ -60,7 +66,7 @@ exports.getUser = async (req, res) => {
     const user = await User.find({});
     return res.json({
       success: true,
-      message: "Users ro'yxati",
+      message: "Users is list",
       innerData: user,
     });
   } catch (error) {
@@ -76,18 +82,20 @@ exports.getUser = async (req, res) => {
 exports.getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).populate(
+      "car_id product_id house_id"
+    );
 
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User topilmadi",
+        message: "User not found!",
         innerData: null,
       });
     } else {
       return res.status(200).json({
         success: true,
-        message: "User topildi",
+        message: "User found!",
         innerData: user,
       });
     }
@@ -134,13 +142,13 @@ exports.updateUser = async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({
         success: false,
-        message: "User topilmadi",
+        message: "User not found!",
         innerData: null,
       });
     } else {
       return res.status(200).json({
         success: true,
-        message: "User muvaffaqiyatli yangilandi",
+        message: "User muvaffaqiyatli yangilandi!",
       });
     }
   } catch (error) {
@@ -161,7 +169,7 @@ exports.deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User topilmadi",
+        message: "User not found!",
         innerData: null,
       });
     } else {
