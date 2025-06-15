@@ -1,7 +1,7 @@
 const { Cart } = require("../models/cartSchema");
 
 // ----------createCart----------
-exports.createCart = async (req, res) => {
+exports.postCart = async (req, res) => {
   try {
     const { user_id, product_id } = req.body;
 
@@ -25,7 +25,7 @@ exports.createCart = async (req, res) => {
 };
 
 // ----------readCart----------
-exports.readCart = async (req, res) => {
+exports.getCart = async (req, res) => {
   try {
     const cart = await Cart.find({});
     return res.status(200).json({
@@ -43,10 +43,10 @@ exports.readCart = async (req, res) => {
 };
 
 // ----------readCartById----------
-exports.readCartById = async (req, res) => {
+exports.getCartById = async (req, res) => {
   try {
     const cartId = req.params.id;
-    const cart = await Cart.findById(cartId);
+    const cart = await Cart.findById(cartId).populate("user_id product_id");
 
     if (!cart) {
       return res.status(404).json({
@@ -61,18 +61,6 @@ exports.readCartById = async (req, res) => {
         cart: cart,
       });
     }
-  } catch (error) {
-    console.error("Error — ", error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error!",
-    });
-  }
-};
-
-// ----------updateCart----------
-exports.updateCart = async (req, res) => {
-  try {
   } catch (error) {
     console.error("Error — ", error);
     return res.status(500).json({
