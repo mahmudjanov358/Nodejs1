@@ -1,13 +1,15 @@
 const { Cart } = require("../models/cartSchema");
 
-// ----------createCart----------
+// ----------postCart----------
 exports.postCart = async (req, res) => {
   try {
-    const { user_id, product_id } = req.body;
+    const { user_id, car_id, product_id, house_id } = req.body;
 
     const newCart = await Cart({
       user_id,
+      car_id,
       product_id,
+      house_id,
     });
     await newCart.save();
 
@@ -24,7 +26,7 @@ exports.postCart = async (req, res) => {
   }
 };
 
-// ----------readCart----------
+// ----------getCart----------
 exports.getCart = async (req, res) => {
   try {
     const cart = await Cart.find({});
@@ -42,11 +44,13 @@ exports.getCart = async (req, res) => {
   }
 };
 
-// ----------readCartById----------
+// ----------getCartById----------
 exports.getCartById = async (req, res) => {
   try {
     const cartId = req.params.id;
-    const cart = await Cart.findById(cartId).populate("user_id product_id");
+    const cart = await Cart.findById(cartId).populate(
+      "user_id car_id product_id house_id"
+    );
 
     if (!cart) {
       return res.status(404).json({
