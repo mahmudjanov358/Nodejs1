@@ -13,7 +13,7 @@ const {
 const {
   postUserValidationSchema,
   updateUservalidationSchema,
-} = require("../validations/userValidation"); //----------User Validations Functions
+} = require("../validations/userValidation"); //----------User Validations Functions----------
 
 // ----------User Validation Function----------
 const userValidation = (schema) => (req, res, next) => {
