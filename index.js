@@ -31,6 +31,8 @@ const { house } = require("./routers/houseRouter"); // ----------House Router---
 app.use("/house", house);
 const { cart } = require("./routers/cartRouter"); // ----------Cart Router----------
 app.use("/cart", cart);
+const { book } = require("./routers/bookRouter"); // ----------Book Router----------
+app.use("/book", book);
 
 // ----------Server----------
 const PORT = process.env.PORT || 1000;
