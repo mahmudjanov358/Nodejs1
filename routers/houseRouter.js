@@ -17,7 +17,7 @@ const {
 
 const houseValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
-  if (validationResult) {
+  if (validationResult.error) {
     return res.status(400).send(validationResult.error.details[0].message);
   }
   next();

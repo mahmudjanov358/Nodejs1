@@ -12,9 +12,7 @@ exports.postCarValidationSchema = Joi.object({
   weight: Joi.string().required(),
   gasoline: Joi.string().required(),
   yearMachine: Joi.string().required(),
-  price: Joi.string()
-    .required()
-    .pattern(/^\d+(\.\d{1,2})?$/),
+  price: Joi.number().required(),
 });
 
 // ----------updateCar Validation Schema----------
@@ -29,7 +27,5 @@ exports.updateCarValidationSchema = Joi.object({
   weight: Joi.string().required(),
   gasoline: Joi.string().required(),
   yearMachine: Joi.string().required(),
-  price: Joi.string()
-    .required()
-    .pattern(/^\d+(\.\d{1,2})?$/),
+  price: Joi.number().required(),
 });

@@ -8,7 +8,7 @@ const {
   deleteCart,
 } = require("../controllers/cart.controller");
 
-const { postHouseValidationSchema } = require("../validations/houseValidation"); //----------Cart Validations Functions----------
+const { postCartValidationSchema } = require("../validations/cartValidation"); //----------Cart Validations Functions----------
 
 const cartValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
@@ -18,7 +18,7 @@ const cartValidation = (schema) => (req, res, next) => {
   next();
 };
 
-cart.post("/postCart", cartValidation(postHouseValidationSchema), postCart);
+cart.post("/postCart", cartValidation(postCartValidationSchema), postCart);
 cart.get("/getCart", getCart);
 cart.get("/getCartById/:id", getCartById);
 cart.delete("/deleteCart/:id", deleteCart);
