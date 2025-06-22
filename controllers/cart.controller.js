@@ -3,13 +3,14 @@ const { Cart } = require("../models/cartSchema");
 // ----------postCart----------
 exports.postCart = async (req, res) => {
   try {
-    const { user_id, car_id, product_id, house_id } = req.body;
+    const { user_id, car_id, product_id, house_id, book_id } = req.body;
 
     const newCart = await Cart({
       user_id,
       car_id,
       product_id,
       house_id,
+      book_id,
     });
     await newCart.save();
 
@@ -49,7 +50,7 @@ exports.getCartById = async (req, res) => {
   try {
     const cartId = req.params.id;
     const cart = await Cart.findById(cartId).populate(
-      "user_id car_id product_id house_id"
+      "user_id car_id product_id house_id book_id"
     );
 
     if (!cart) {
