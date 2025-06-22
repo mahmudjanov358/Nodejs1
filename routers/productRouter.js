@@ -1,5 +1,5 @@
-const { Router } = require("express"); // ----------Express Router----------
-const product = Router(); // ----------Product Router Instance----------
+const { Router } = require("express"); // ----Express Router
+const product = Router(); // ----Product Router Instance
 
 const {
   postProduct,
@@ -7,23 +7,23 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-} = require("../controllers/product.controller"); // ----------Product Controller Functions----------
+} = require("../controllers/product.controller"); // ----Product Controller Functions
 
 const {
   postProductValidationSchema,
   updateProductValidationSchema,
-} = require("../validations/productValidation"); // ----------Product Validations Functions----------
-const { Schema } = require("mongoose");
+} = require("../validations/productValidation"); // ----Product Validations Functions
 
 const productValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
   if (validationResult.error) {
     return res.status(400).send(validationResult.error.details[0].message);
+  } else {
+    next();
   }
-  next();
-};
+}; // ----Function for Validation
 
-// ----------Paths----------
+// ----Paths
 product.post(
   "/postProduct",
   productValidation(postProductValidationSchema),
@@ -38,5 +38,4 @@ product.patch(
 );
 product.delete("/deleteProduct/:id", deleteProduct);
 
-// ----------Exporting Product Router----------
-module.exports = { product };
+module.exports = { product }; // ----Exporting Product Router

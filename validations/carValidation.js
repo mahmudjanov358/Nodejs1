@@ -1,6 +1,5 @@
-const Joi = require("joi"); //----------Joi library----------
+const Joi = require("joi"); //----Joi Library
 
-// ----------postCar Validation Schema----------
 exports.postCarValidationSchema = Joi.object({
   title: Joi.string().required().min(1),
   model: Joi.string().required(),
@@ -13,19 +12,9 @@ exports.postCarValidationSchema = Joi.object({
   gasoline: Joi.string().required(),
   yearMachine: Joi.string().required(),
   price: Joi.number().required(),
-});
+}); // ----postCar Validation Schema
 
-// ----------updateCar Validation Schema----------
-exports.updateCarValidationSchema = Joi.object({
-  title: Joi.string().required().min(1),
-  model: Joi.string().required(),
-  description: Joi.string().optional(),
-  color: Joi.string().required(),
-  horsePower: Joi.number().required(),
-  carType: Joi.string().required(),
-  charging: Joi.string().optional(),
-  weight: Joi.string().required(),
-  gasoline: Joi.string().required(),
-  yearMachine: Joi.string().required(),
-  price: Joi.number().required(),
-});
+exports.updateBookValidationSchema = exports.postCarValidationSchema.fork(
+  Object.keys(exports.postCarValidationSchema.describe().keys),
+  (schema) => schema.optional()
+); // ----updateCar Validation Schema

@@ -1,5 +1,5 @@
-const { Router } = require("express"); // ----------Express Router----------
-const car = Router(); // ----------Car Router Instance----------
+const { Router } = require("express"); // ----Express Router
+const car = Router(); // ----Car Router Instance
 
 const {
   postCar,
@@ -7,22 +7,23 @@ const {
   getCarById,
   updateCar,
   deleteCar,
-} = require("../controllers/car.controller"); // ----------Car Controller Functions----------
+} = require("../controllers/car.controller"); // ----Car Controller Functions
 
 const {
   postCarValidationSchema,
   updateCarValidationSchema,
-} = require("../validations/carValidation"); //----------Car Validations Functions----------
+} = require("../validations/carValidation"); // ----Car Validations Functions
 
 const carValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
   if (validationResult.error) {
     return res.status(400).send(validationResult.error.details[0].message);
+  } else {
+    next();
   }
-  next();
-};
+}; // ----Function for Validation
 
-// ----------Paths----------
+// ----Paths
 car.post("/postCar", carValidation(postCarValidationSchema), postCar);
 car.get("/getCar", getCar);
 car.get("/getCarById/:id", getCarById);
@@ -33,5 +34,4 @@ car.patch(
 );
 car.delete("/deleteCar/:id", deleteCar);
 
-// ----------Exporting Car Router----------
-module.exports = { car };
+module.exports = { car }; // ----Exporting Car Router

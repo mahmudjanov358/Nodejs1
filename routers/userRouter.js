@@ -1,5 +1,5 @@
-const { Router } = require("express"); // ----------Express Router----------
-const user = Router(); // ----------User Router Instance----------
+const { Router } = require("express"); // ----Express Router
+const user = Router(); // ----User Router Instance
 
 const {
   postUser,
@@ -8,23 +8,23 @@ const {
   updateUser,
   deleteUser,
   loginUser,
-} = require("../controllers/user.controller"); // ----------User Controller Functions----------
+} = require("../controllers/user.controller"); // ----User Controller Functions
 
 const {
   postUserValidationSchema,
   updateUservalidationSchema,
-} = require("../validations/userValidation"); //----------User Validations Functions----------
+} = require("../validations/userValidation"); // ----User Validations Functions
 
-// ----------User Validation Function----------
 const userValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
   if (validationResult.error) {
     return res.status(400).send(validationResult.error.details[0].message);
+  } else {
+    next();
   }
-  next();
-};
+}; // ----Function for Validation
 
-// ----------Paths----------
+// ----Paths
 user.post("/postUser", userValidation(postUserValidationSchema), postUser);
 user.get("/getUser", getUser);
 user.get("/getUserById/:id", getUserById);
@@ -36,5 +36,4 @@ user.put(
 user.delete("/deleteUser/:id", deleteUser);
 user.post("/loginUser", loginUser);
 
-// ----------Exporting User Router----------
-module.exports = { user };
+module.exports = { user }; // ----Exporting User Router

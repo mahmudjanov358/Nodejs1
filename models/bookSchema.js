@@ -5,7 +5,18 @@ const bookSchema = new Schema({
   author: { type: String, required: true, trim: true },
   publishYear: { type: String, required: true },
   pages: { type: Number, required: true },
-  genre: { type: String, enum: ["Drama", "Fantasy", "History"] },
+  genre: {
+    type: String,
+    enum: [
+      "Novel",
+      "Poetry",
+      "Science",
+      "Biography",
+      "Fantasy",
+      "History",
+      "Other",
+    ],
+  },
   price: { type: Number, required: true },
 });
 

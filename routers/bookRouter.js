@@ -1,5 +1,5 @@
-const { Router } = require("express"); //----------Express Router----------
-const book = Router(); //----------Book Router Instance--------
+const { Router } = require("express"); //----Express Router
+const book = Router(); //----Book Router Instan
 
 const {
   postBook,
@@ -7,14 +7,31 @@ const {
   getBookById,
   updateBook,
   deleteBook,
-} = require("../controllers/book.controller"); // ----------Book Controller Functions----------
+} = require("../controllers/book.controller"); // ----Book Controller Functions
 
-// ----------Paths----------
-book.post("/postBook", postBook);
+const {
+  postBookValidationSchema,
+  updateBookValidationSchema,
+} = require("../validations/bookValidation");
+
+const bookValidation = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  } else {
+    next();
+  }
+};
+
+// ----Paths
+book.post("/postBook", bookValidation(postBookValidationSchema), postBook);
 book.get("/getBook", getBook);
-book.get("/getBook/:id", getBookById);
-book.put("/updateBook/:id", updateBook);
+book.get("/getBookById/:id", getBookById);
+book.put(
+  "/updateBook/:id",
+  bookValidation(updateBookValidationSchema),
+  updateBook
+);
 book.delete("/deleteBook/:id", deleteBook);
 
-// ----------Exporting Router Book----------
-module.exports = { book };
+module.exports = { book }; // ----Exporting Router Book
