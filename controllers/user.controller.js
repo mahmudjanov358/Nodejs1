@@ -18,6 +18,7 @@ exports.postUser = async (req, res) => {
       car_id,
       product_id,
       house_id,
+      book_id,
     } = req.body;
     const existingUser = await User.findOne({ username });
     console.log(`Existing User: ${existingUser}`);
@@ -42,6 +43,7 @@ exports.postUser = async (req, res) => {
         car_id,
         product_id,
         house_id,
+        book_id,
       });
       await newUser.save();
 
@@ -83,7 +85,7 @@ exports.getUserById = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findById(userId).populate(
-      "car_id product_id house_id"
+      "car_id product_id house_id book_id"
     );
 
     if (!user) {

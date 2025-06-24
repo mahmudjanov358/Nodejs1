@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 const { Car } = require("./carSchema");
 const { Product } = require("./productSchema");
 const { House } = require("./houseSchema");
+const { Book } = require("./bookSchema");
 
 // ----------Defining the User Schema----------
 const userSchema = new Schema({
@@ -17,6 +18,7 @@ const userSchema = new Schema({
   car_id: { type: Schema.Types.ObjectId, ref: Car },
   product_id: { type: Schema.Types.ObjectId, ref: Product },
   house_id: { type: Schema.Types.ObjectId, ref: House },
+  book: { type: Schema.Types.ObjectId, ref: Book },
 });
 
 // ----------Exporting the User Model----------
