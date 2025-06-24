@@ -1,40 +1,40 @@
-const express = require("express"); // ----------Express----------
-const { connect } = require("mongoose"); // ----------Mongoose----------
-const cors = require("cors"); // ----------CORS----------
-require("dotenv").config(); // ----------Environment Variables----------
+const express = require("express"); // ----Express Library
+const { connect } = require("mongoose"); // ----Mongoose Library
+const cors = require("cors"); // ----CORS Library
+require("dotenv").config(); // ----Environment Variables Library
 
-const app = express(); // ----------App Instance----------
+const app = express(); // ----App Instance
 
-// ----------Middleware----------
+// ----Middleware
 app.use(express.json());
 app.use(cors());
 
-// ----------Database connecToDB----------
+// ----Database connecToDB
 async function connectToDB() {
   try {
     await connect(process.env.MONGO_URL);
-    console.log("MongoDB is connected");
+    console.log("MongoDB is connected!");
   } catch (error) {
     console.error("MongoDB connected failed:", error.message);
   }
 }
 connectToDB();
 
-// ----------Routers----------
-const { user } = require("./routers/userRouter"); // ----------User Router----------
+// ----Routers
+const { user } = require("./routers/userRouter"); // ----User Router
 app.use("/user", user);
-const { car } = require("./routers/carRouter"); // ----------Car Router----------
+const { car } = require("./routers/carRouter"); // ----Car Router
 app.use("/car", car);
-const { product } = require("./routers/productRouter"); // ----------Product Router----------
+const { product } = require("./routers/productRouter"); // ----Product Router
 app.use("/product", product);
-const { house } = require("./routers/houseRouter"); // ----------House Router----------
+const { house } = require("./routers/houseRouter"); // ----House Router
 app.use("/house", house);
-const { cart } = require("./routers/cartRouter"); // ----------Cart Router----------
+const { cart } = require("./routers/cartRouter"); // ----Cart Router
 app.use("/cart", cart);
-const { book } = require("./routers/bookRouter"); // ----------Book Router----------
+const { book } = require("./routers/bookRouter"); // ----Book Router
 app.use("/book", book);
 
-// ----------Server----------
+// ----Server
 const PORT = process.env.PORT || 1000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
