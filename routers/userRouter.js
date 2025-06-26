@@ -14,7 +14,6 @@ const {
   postUserValidationSchema,
   updateUservalidationSchema,
 } = require("../validations/userValidation"); // ----User Validations Functions
-
 const userValidation = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
   if (validationResult.error) {
@@ -24,19 +23,9 @@ const userValidation = (schema) => (req, res, next) => {
   }
 }; // ----Function for Validation
 
-// ----Paths
-user.post("/postUser", userValidation(postUserValidationSchema), postUser);
-user.get("/getUser", getUser);
-user.get("/getUserById/:id", getUserById);
-user.put(
-  "/updateUser/:id",
-  userValidation(updateUservalidationSchema),
-  updateUser
-);
 user.delete("/deleteUser/:id", deleteUser);
 user.post("/loginUser", loginUser);
 
-// ----postUser Swagger
 /**
  * @swagger
  * /user/postUser:
@@ -95,8 +84,8 @@ user.post("/loginUser", loginUser);
  *       '500':
  *         description: Tashqi Server Xatosi
  */
+user.post("/postUser", userValidation(postUserValidationSchema), postUser);
 
-// ----getUser Swagger
 /**
  * @swagger
  * /user/getUser:
@@ -110,8 +99,8 @@ user.post("/loginUser", loginUser);
  *       '500':
  *         description: Tashqi Server
  */
+user.get("/getUser", getUser);
 
-// ----getUserById Swagger
 /**
  * @swagger
  * /user/getUserById/{id}:
@@ -134,6 +123,7 @@ user.post("/loginUser", loginUser);
  *       '500':
  *         description: Tashqi Server Xatosi
  */
+user.get("/getUserById/:id", getUserById);
 
 // ----updateUser Swagger
 /**
@@ -142,7 +132,57 @@ user.post("/loginUser", loginUser);
  *   patch:
  *     summary: Userni yangilash
  *     tags: [User]
- *     description: Userni yangilash (masalan: username, email, password, more)
+ *     description: Userni yangilash
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: User ni olish uchun ID
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Yangi Username
+ *               password:
+ *                 type: string
+ *                 description: Yangi Password
+ *               firstName:
+ *                 type: string
+ *                 description: Yangi FirstName
+ *               lastName:
+ *                 type: string
+ *                 description: Yangi LastName
+ *               birthday:
+ *                 type: string
+ *                 description: Yangi Birthday
+ *               gender:
+ *                 type: string
+ *                 description: Yangi Jins
+ *               address:
+ *                 type: string
+ *                 description: Yangi Address
+ *               phone:
+ *                 type: string
+ *                 description: Yangi Phone
+ *     responses:
+ *       '200':
+ *         description: User yangilandi
+ *       '404':
+ *         description: User topilmadi
+ *       '500':
+ *         description: Tashqi Server Xatosi
  */
+user.patch(
+  "/updateUser/:id",
+  userValidation(updateUservalidationSchema),
+  updateUser
+);
 
 module.exports = { user }; // ----Exporting User Router

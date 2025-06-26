@@ -12,7 +12,7 @@ const userSchema = new Schema({
   firstName: { type: String, default: "" },
   lastName: { type: String, default: "" },
   birthday: { type: String },
-  gender: { type: String, enum: ["male", "female"], alias: "jinsi" },
+  gender: { type: String, enum: ["male", "female"], },
   address: { type: String, default: "" },
   phone: { type: String, default: "" },
   car_id: { type: Schema.Types.ObjectId, ref: Car },
