@@ -36,7 +36,7 @@ user.put(
 user.delete("/deleteUser/:id", deleteUser);
 user.post("/loginUser", loginUser);
 
-// ----User Swaggers
+// ----postUser Swagger
 /**
  * @swagger
  * /user/postUser:
@@ -93,7 +93,27 @@ user.post("/loginUser", loginUser);
  *       '404':
  *         description: Xatolik — Xatolarga yo'l qo'ydingiz
  *       '500':
- *         description: Ichki Server Xatosi
+ *         description: Tashqi Server Xatosi
+ */
+
+// ----getUser Swagger
+/**
+ * @swagger
+ * /user/getUser:
+ *   get:
+ *     summary: Barcha Userlarni olish
+ *     tags: [User]
+ *     description: Barcha Userlarni ro'yhatini olish
+ *     responses:
+ *       '200':
+ *         description: Userlar ro'yhati olindi
+ *       '500':
+ *         description: Tashqi Server
+ */
+
+// ----getUserById Swagger
+/**
+ * 
  */
 
 module.exports = { user }; // ----Exporting User Router

@@ -18,6 +18,7 @@ exports.postUserValidationSchema = Joi.object({
   car_id: Joi.string(),
   product_id: Joi.string(),
   house_id: Joi.string(),
+  book_id: Joi.string(),
 }); // ----postUser Validation Schema
 
 exports.updateUservalidationSchema = exports.postUserValidationSchema.fork(

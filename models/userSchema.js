@@ -18,7 +18,7 @@ const userSchema = new Schema({
   car_id: { type: Schema.Types.ObjectId, ref: Car },
   product_id: { type: Schema.Types.ObjectId, ref: Product },
   house_id: { type: Schema.Types.ObjectId, ref: House },
-  book: { type: Schema.Types.ObjectId, ref: Book },
+  book_id: { type: Schema.Types.ObjectId, ref: Book },
 });
 
 // ----------Exporting the User Model----------
