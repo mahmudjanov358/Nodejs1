@@ -113,7 +113,36 @@ user.post("/loginUser", loginUser);
 
 // ----getUserById Swagger
 /**
- * 
+ * @swagger
+ * /user/getUserById/{id}:
+ *   get:
+ *     summary: Foydalanuvchini ID bo'yicha olish
+ *     tags: [User]
+ *     description: Foydalanuvchini ID bo'yicha olish
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Foydalanuvchini ID bo'yicha olish
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: User ID bo'yicha olindi
+ *       '404':
+ *         description: User topilmadi
+ *       '500':
+ *         description: Tashqi Server Xatosi
+ */
+
+// ----updateUser Swagger
+/**
+ * @swagger
+ * /user/updateUser/{id}:
+ *   patch:
+ *     summary: Userni yangilash
+ *     tags: [User]
+ *     description: Userni yangilash (masalan: username, email, password, more)
  */
 
 module.exports = { user }; // ----Exporting User Router
