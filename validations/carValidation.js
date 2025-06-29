@@ -14,7 +14,7 @@ exports.postCarValidationSchema = Joi.object({
   price: Joi.string().required(),
 }); // ----postCar Validation Schema
 
-exports.updateBookValidationSchema = exports.postCarValidationSchema.fork(
+exports.updateCarValidationSchema = exports.postCarValidationSchema.fork(
   Object.keys(exports.postCarValidationSchema.describe().keys),
   (schema) => schema.optional()
 ); // ----updateCar Validation Schema

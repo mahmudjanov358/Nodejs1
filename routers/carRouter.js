@@ -125,7 +125,7 @@ car.get("/getCarById/:id", getCarById);
 /**
  * @swagger
  * /car/updateCar/{id}:
- *   put:
+ *   patch:
  *     summary: Avtomobilni yangilash
  *     tags: [Car]
  *     description: Avtomobilni yangilash
@@ -178,9 +178,9 @@ car.get("/getCarById/:id", getCarById);
  *                 description: Yangi Price
  *     responses:
  *       '200':
- *         description: User updated successfully
+ *         description: Car updated successfully
  *       '404':
- *         description: User not found
+ *         description: Car not found
  *       '500':
  *         description: Internal Server Error
  */
@@ -190,6 +190,7 @@ car.patch(
   updateCar
 );
 
+// ----deleteCar
 /**
  * @swagger
  * /car/deleteCar/{id}:
