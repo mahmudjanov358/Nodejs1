@@ -23,9 +23,9 @@ const userValidation = (schema) => (req, res, next) => {
   }
 }; // ----Function for Validation
 
-user.delete("/deleteUser/:id", deleteUser);
 user.post("/loginUser", loginUser);
 
+// ----postUser
 /**
  * @swagger
  * /user/postUser:
@@ -78,14 +78,15 @@ user.post("/loginUser", loginUser);
  *                 description: Foydalanuvchining kitobi uchun ma'lumot (ObjectId)
  *     responses:
  *       '201':
- *         description: Muvaffaqiyatli o'tish
+ *         description: User created successfully
  *       '404':
- *         description: Xatolik — Xatolarga yo'l qo'ydingiz
+ *         description: This name has been banned
  *       '500':
  *         description: Tashqi Server Xatosi
  */
 user.post("/postUser", userValidation(postUserValidationSchema), postUser);
 
+// ----getUser
 /**
  * @swagger
  * /user/getUser:
@@ -95,19 +96,20 @@ user.post("/postUser", userValidation(postUserValidationSchema), postUser);
  *     description: Barcha Userlarni ro'yhatini olish
  *     responses:
  *       '200':
- *         description: Userlar ro'yhati olindi
+ *         description: Userlar List
  *       '500':
- *         description: Tashqi Server
+ *         description: Internal Server Error
  */
 user.get("/getUser", getUser);
 
+// ----getUserById
 /**
  * @swagger
  * /user/getUserById/{id}:
  *   get:
  *     summary: Foydalanuvchini ID bo'yicha olish
  *     tags: [User]
- *     description: Foydalanuvchini ID bo'yicha olish
+ *     description: ID bo'yicha olish
  *     parameters:
  *       - in: path
  *         name: id
@@ -117,15 +119,15 @@ user.get("/getUser", getUser);
  *           type: string
  *     responses:
  *       '200':
- *         description: User ID bo'yicha olindi
+ *         description: User found
  *       '404':
- *         description: User topilmadi
+ *         description: User not found
  *       '500':
- *         description: Tashqi Server Xatosi
+ *         description: Internal Server Error
  */
 user.get("/getUserById/:id", getUserById);
 
-// ----updateUser Swagger
+// ----updateUser
 /**
  * @swagger
  * /user/updateUser/{id}:
@@ -173,16 +175,41 @@ user.get("/getUserById/:id", getUserById);
  *                 description: Yangi Phone
  *     responses:
  *       '200':
- *         description: User yangilandi
+ *         description: User updated successfully
  *       '404':
- *         description: User topilmadi
+ *         description: User not found
  *       '500':
- *         description: Tashqi Server Xatosi
+ *         description: Internal Server Error
  */
 user.patch(
   "/updateUser/:id",
   userValidation(updateUservalidationSchema),
   updateUser
 );
+
+// ----deleteUser
+/**
+ * @swagger
+ * /user/deleteUser/{id}:
+ *   delete:
+ *     summary: Delete a user By ID
+ *     tags: [User]
+ *     description: Userni o'chirish
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: ID of the User to Delete
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: User deleted successfully
+ *       '404':
+ *         description: User not found
+ *       '500':
+ *         description: Internal Server Error
+  */
+user.delete("/deleteUser/:id", deleteUser);
 
 module.exports = { user }; // ----Exporting User Router

@@ -11,7 +11,7 @@ exports.postCarValidationSchema = Joi.object({
   weight: Joi.string().required(),
   gasoline: Joi.string().required(),
   yearMachine: Joi.string().required(),
-  price: Joi.number().required(),
+  price: Joi.string().required(),
 }); // ----postCar Validation Schema
 
 exports.updateBookValidationSchema = exports.postCarValidationSchema.fork(

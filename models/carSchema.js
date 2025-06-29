@@ -13,7 +13,7 @@ const carSchema = new Schema({
   weight: { type: String, required: true },
   gasoline: { type: String, required: true },
   yearMachine: { type: String, required: true },
-  price: { type: Number, required: true },
+  price: { type: String, required: true },
 });
 
 // ----------Exporting the Car Model----------

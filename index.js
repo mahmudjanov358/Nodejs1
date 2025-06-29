@@ -22,20 +22,7 @@ async function connectToDB() {
 }
 connectToDB();
 
-// ----Routers
-const { user } = require("./routers/userRouter"); // ----User Router
-app.use("/user", user);
-const { car } = require("./routers/carRouter"); // ----Car Router
-app.use("/car", car);
-const { product } = require("./routers/productRouter"); // ----Product Router
-app.use("/product", product);
-const { house } = require("./routers/houseRouter"); // ----House Router
-app.use("/house", house);
-const { book } = require("./routers/bookRouter"); // ----Book Router
-app.use("/book", book);
-const { cart } = require("./routers/cartRouter"); // ----Cart Router
-app.use("/cart", cart);
-
+// ----SwaggerOptions
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -80,6 +67,20 @@ const swaggerOptions = {
 }
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// ----Routers
+const { user } = require("./routers/userRouter"); // ----User Router
+app.use("/user", user);
+const { car } = require("./routers/carRouter"); // ----Car Router
+app.use("/car", car);
+const { product } = require("./routers/productRouter"); // ----Product Router
+app.use("/product", product);
+const { house } = require("./routers/houseRouter"); // ----House Router
+app.use("/house", house);
+const { book } = require("./routers/bookRouter"); // ----Book Router
+app.use("/book", book);
+const { cart } = require("./routers/cartRouter"); // ----Cart Router
+app.use("/cart", cart);
 
 // ----Server
 const PORT = process.env.PORT || 1000;
