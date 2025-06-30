@@ -25,7 +25,7 @@ const bookValidation = (schema) => (req, res, next) => {
 // ----postBook
 /**
  * @swagger
- * /book/postCar:
+ * /book/postBook:
  *   post:
  *     summary: Yangi Book qo'shish
  *     tags: [Book]

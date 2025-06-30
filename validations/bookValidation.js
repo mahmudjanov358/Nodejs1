@@ -57,7 +57,7 @@ exports.postBookValidationSchema = Joi.object({
     .messages({
       "any.only": `Genre must be one of: ${genreOptions.join(", ")}`,
     }),
-  price: Joi.number().precision(2).min(0).max(1000).required().messages({
+  price: Joi.number().precision(2).min(1).required().messages({
     "number.base": "Price must be a number",
     "number.min": "Price cannot be negative",
     "number.max": "Price is too high",

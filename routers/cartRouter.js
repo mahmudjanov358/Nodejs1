@@ -34,19 +34,19 @@ const cartValidation = (schema) => (req, res, next) => {
  *             type: object
  *             properties:
  *               user_id:
- *                 type: object
+ *                 type: string
  *                 description: User ID
  *               car_id:
- *                 type: object
+ *                 type: string
  *                 description: Car ID
  *               product_id:
- *                 type: object
+ *                 type: string
  *                 description: Product ID
  *               house_id:
- *                 type: object
+ *                 type: string
  *                 description: House ID
  *               book_id:
- *                 type: object
+ *                 type: string
  *                 description: Book ID
  *     responses:
  *       '200':
