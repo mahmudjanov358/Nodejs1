@@ -92,13 +92,13 @@ exports.getUserById = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: "User not found!",
-        innerData: null,
+        user: null,
       });
     } else {
       return res.status(200).json({
         success: true,
         message: "User found!",
-        innerData: user,
+        user: user,
       });
     }
   } catch (error) {
